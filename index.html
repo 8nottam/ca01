@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Cá học tốt nhaaa 🐋🐋</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffd1dc, #ffe5e5, #fff0f5, #e6e6fa);
+            font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .clock-section {
+            flex: 2.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .controls-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .clock-container {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            background: #fff;
+            border-radius: 50%;
+            border: 25px solid transparent;
+            background-image: linear-gradient(white, white), 
+                            linear-gradient(135deg, #ff99cc, #ffb3ff, #ff99ff, #cc99ff);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 0 40px rgba(255, 153, 204, 0.5),
+                       inset 0 0 20px rgba(255, 192, 203, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(2deg); }
+            75% { transform: translateY(15px) rotate(-2deg); }
+        }
+
+        .clock-face {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .clock-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .decoration {
+            position: absolute;
+            background: #ffccf9;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 2.5em;
+            color: #ff66b2;
+            text-shadow: 2px 2px 4px rgba(255, 153, 204, 0.5);
+            transform-origin: 50% 50%;
+        }
+
+        .number span {
+            display: inline-block;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            line-height: 40px;
+            position: relative;
+        }
+
+        .hand {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 20px;
+            z-index: 2;
+            transition: transform 0.5s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+        }
+
+        .hour-hand {
+            width: 12px;
+            height: 140px;
+            background: linear-gradient(#ff66b2, #ff99cc);
+            box-shadow: 0 0 10px rgba(255, 102, 178, 0.5);
+        }
+
+        .minute-hand {
+            width: 8px;
+            height: 200px;
+            background: linear-gradient(#ff99ff, #ffb3ff);
+            box-shadow: 0 0 10px rgba(255, 153, 255, 0.5);
+        }
+
+        .second-hand {
+            width: 4px;
+            height: 220px;
+            background: linear-gradient(#cc99ff, #e6ccff);
+            box-shadow: 0 0 10px rgba(204, 153, 255, 0.5);
+        }
+
+        .center-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            margin: -15px 0 0 -15px;
+            background: radial-gradient(#ff66b2, #ff99cc);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 102, 178, 0.7);
+            z-index: 3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .alarm-container, .todo-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(255, 153, 204, 0.3);
+            border: 3px solid #ff99cc;
+            transition: transform 0.3s;
+        }
+
+        .alarm-container:hover, .todo-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-cute {
+            background: linear-gradient(45deg, #ff66b2, #ff99cc);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 153, 204, 0.4);
+        }
+
+        .btn-cute:hover {
+            background: linear-gradient(45deg, #ff99cc, #ff66b2);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 153, 204, 0.6);
+            color: white;
+        }
+
+        .todo-item {
+            background: linear-gradient(45deg, #fff5f8, #fff0fa);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #ffcce6;
+            transition: all 0.3s;
+        }
+
+        .todo-item:hover {
+            transform: translateX(5px);
+            box-shadow: -5px 5px 15px rgba(255, 153, 204, 0.3);
+        }
+
+        .custom-checkbox {
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
+            border: 2px solid #ff99cc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #ff99cc;
+            border-color: #ff66b2;
+        }
+
+        .alarm-modal .modal-content {
+            background: linear-gradient(135deg, #fff5f8, #fff0fa);
+            border-radius: 25px;
+            border: 3px solid #ff99cc;
+        }
+
+        .alarm-modal .modal-header {
+            background: linear-gradient(45deg, #ff66b2, #ff99cc);
+            color: white;
+            border-radius: 22px 22px 0 0;
+        }
+
+        .kawaii-icon {
+            font-size: 2em;
+            margin: 10px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        input[type="time"], input[type="text"] {
+            border: 2px solid #ff99cc;
+            border-radius: 15px;
+            padding: 10px;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        input[type="time"]:focus, input[type="text"]:focus {
+            border-color: #ff66b2;
+            box-shadow: 0 0 15px rgba(255, 153, 204, 0.5);
+            outline: none;
+        }
+
+        h3 {
+            color: #ff66b2;
+            text-shadow: 2px 2px 4px rgba(255, 153, 204, 0.5);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+                /* Styles nouveaux pour la section musique */
+                .music-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .music-buttons button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background-color: #ff99cc;
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-buttons button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 153, 204, 0.5);
+        }
+
+        .music-player {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .music-player h3 {
+            color: #ff66b2;
+            text-shadow: 2px 2px 4px rgba(255, 153, 204, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="top: 45dp;">🐟 Fighting...!</h1>
+    <div class="main-container">
+        <div class="clock-section">
+            <div class="clock-container">
+                <div class="clock-face">
+                    <div class="center-dot"></div>
+                    <div class="hand hour-hand"></div>
+                    <div class="hand minute-hand"></div>
+                    <div class="hand second-hand"></div>
+                </div>
+                <div class="clock-decoration">
+                    <!-- Decorative elements will be added by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="alarm-container">
+                <h3>
+                    <span class="kawaii-icon">⏰</span>
+                    Đặt Báo Thức
+                </h3>
+                <div class="input-group mb-3">
+                    <input type="time" class="form-control" id="alarmTime">
+                    <button class="btn btn-cute" id="setAlarm">
+                        <i class="fas fa-bell"></i> Đặt Báo Thức
+                    </button>
+                </div>
+                <div id="activeAlarms" class="mt-3"></div>
+            </div>
+
+            <div class="todo-container">
+                <h3>
+                    <span class="kawaii-icon">📝</span>
+                    Việc Cần Làm
+                </h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="todoInput" placeholder="Thêm việc cần làm...">
+                    <button class="btn btn-cute" id="addTodo">
+                        <i class="fas fa-plus"></i> Thêm
+                    </button>
+                </div>
+                <div id="todoList"></div>
+            </div>
+            <div class="music-buttons">
+                <button onclick="playMusic(0)">🎵</button>
+                <button onclick="playMusic(1)">🎶</button>
+                <button onclick="playMusic(2)">🎧</button>
+                <button onclick="playMusic(3)">🎙️</button>
+                <button onclick="playMusic(4)">🎼</button>
+                <button onclick="playMusic(5)">🎹</button>
+            </div>
+
+            <div class="music-player">
+                <h3>Đang phát: <span id="currentSong">Chưa có bài hát nào được chọn</span></h3>
+                <audio id="musicPlayer" controls>
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Modal Báo Thức -->
+    <div class="modal fade alarm-modal" id="alarmModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <span class="kawaii-icon">🌟</span> 
+                        Đến giờ rồi!
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-4">
+                        <span class="kawaii-icon" style="font-size: 4em;">🎵</span>
+                    </div>
+                    <p style="font-size: 1.2em;">Đến giờ rùi, Cá ưiiiiiiii </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cute" id="stopAlarm">
+                        <i class="fas fa-stop"></i> Tắt Báo Thức
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alarmSound" src="https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/bell_ring.mp3"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tạo các điểm trang trí
+        function createDecorations() {
+            const decorationContainer = document.querySelector('.clock-decoration');
+            for (let i = 0; i < 12; i++) {
+                const deco = document.createElement('div');
+                deco.className = 'decoration';
+                const size = Math.random() * 10 + 5;
+                const angle = (i * 30 + Math.random() * 20 - 10) * Math.PI / 180;
+                const radius = 250 + Math.random() * 20;
+                deco.style.width = size + 'px';
+                deco.style.height = size + 'px';
+                deco.style.left = 300 + Math.cos(angle) * radius - size/2 + 'px';
+                deco.style.top = 300 + Math.sin(angle) * radius - size/2 + 'px';
+                deco.style.animationDelay = Math.random() * 2 + 's';
+                decorationContainer.appendChild(deco);
+            }
+        }
+
+        // Tạo số trên mặt đồng hồ
+        function createClockNumbers() {
+            const clockFace = document.querySelector('.clock-face');
+            for (let i = 1; i <= 12; i++) {
+                const number = document.createElement('div');
+                number.className = 'number';
+                number.style.transform = `rotate(${i * 30}deg)`;
+                const span = document.createElement('span');
+                span.style.transform = `rotate(-${i * 30}deg)`;
+                span.textContent = i;
+                number.appendChild(span);
+                clockFace.appendChild(number);
+            }
+        }
+        // Cập nhật đồng hồ
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
+
+            // Tính góc quay cho các kim
+            const hourDeg = (hours * 30) + (minutes * 0.5) + (seconds * (0.5/60));
+            const minuteDeg = (minutes * 6) + (seconds * 0.1);
+            const secondDeg = (seconds * 6) + (milliseconds * 0.006);
+
+            // Cập nhật vị trí các kim
+            document.querySelector('.hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+            document.querySelector('.minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.querySelector('.second-hand').style.transform = `rotate(${secondDeg}deg)`;
+        }
+
+        // Khởi tạo báo thức
+        let alarms = JSON.parse(localStorage.getItem('alarms') || '[]');
+        const alarmSound = document.getElementById('alarmSound');
+        const alarmModal = new bootstrap.Modal(document.getElementById('alarmModal'));
+
+        function checkAlarms() {
+            const now = new Date();
+            const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            
+            alarms.forEach((alarm, index) => {
+                if (alarm.time === currentTime && !alarm.triggered) {
+                    playAlarm();
+                    alarms[index].triggered = true;
+                    saveAlarms();
+                }
+            });
+        }
+
+        function playAlarm() {
+            alarmSound.loop = true;
+            alarmSound.play();
+            alarmModal.show();
+        }
+
+        document.getElementById('stopAlarm').addEventListener('click', () => {
+            alarmSound.pause();
+            alarmSound.currentTime = 0;
+            alarmModal.hide();
+        });
+
+        document.getElementById('setAlarm').addEventListener('click', () => {
+            const timeInput = document.getElementById('alarmTime');
+            const time = timeInput.value;
+            
+            if (time) {
+                alarms.push({ time, triggered: false });
+                saveAlarms();
+                updateAlarmsList();
+                timeInput.value = '';
+
+                // Hiển thị thông báo cute
+                showNotification('🌟 Báo thức đã được đặt thành công! 🎵');
+            }
+        });
+
+        function saveAlarms() {
+            localStorage.setItem('alarms', JSON.stringify(alarms));
+        }
+
+        function updateAlarmsList() {
+            const alarmsContainer = document.getElementById('activeAlarms');
+            alarmsContainer.innerHTML = alarms
+                .filter(alarm => !alarm.triggered)
+                .map((alarm, index) => `
+                    <div class="todo-item">
+                        <div style="display: flex; align-items: center;">
+                            <span class="kawaii-icon" style="font-size: 1.2em; margin-right: 10px;">⏰</span>
+                            <span>${alarm.time}</span>
+                        </div>
+                        <button class="btn btn-sm btn-cute" onclick="deleteAlarm(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+        }
+
+        function deleteAlarm(index) {
+            alarms.splice(index, 1);
+            saveAlarms();
+            updateAlarmsList();
+            showNotification('🗑️ Đã xóa báo thức!');
+        }
+
+        // Khởi tạo Todo List
+        let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+
+        function saveTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        function updateTodoList() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = todos.map((todo, index) => `
+                <div class="todo-item" style="opacity: ${todo.completed ? '0.7' : '1'}">
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" class="custom-checkbox" 
+                            ${todo.completed ? 'checked' : ''} 
+                            onchange="toggleTodo(${index})">
+                        <span style="${todo.completed ? 'text-decoration: line-through; color: #999;' : ''}">
+                            ${todo.text}
+                        </span>
+                    </div>
+                    <button class="btn btn-sm btn-cute" onclick="deleteTodo(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('addTodo').addEventListener('click', () => {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            
+            if (text) {
+                todos.push({ text, completed: false });
+                saveTodos();
+                updateTodoList();
+                input.value = '';
+                showNotification('✨ Đã thêm việc cần làm mới!');
+            }
+        });
+
+        // Thêm phím tắt Enter cho input todo
+        document.getElementById('todoInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('addTodo').click();
+            }
+        });
+
+        function toggleTodo(index) {
+            todos[index].completed = !todos[index].completed;
+            saveTodos();
+            updateTodoList();
+            showNotification(todos[index].completed ? '🎉 Hoàn thành!' : '↩️ Đã hủy hoàn thành');
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            saveTodos();
+            updateTodoList();
+            showNotification('🗑️ Đã xóa việc cần làm!');
+        }
+
+        // Tạo thông báo cute
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #ff66b2, #ff99cc);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 25px;
+                box-shadow: 0 5px 15px rgba(255, 153, 204, 0.4);
+                font-size: 1.1em;
+                z-index: 1000;
+                animation: slideIn 0.5s ease-out;
+            `;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.5s ease-in';
+                setTimeout(() => notification.remove(), 450);
+            }, 2000);
+        }
+
+        // Thêm styles cho animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Khởi tạo ứng dụng
+        createClockNumbers();
+        createDecorations();
+        
+        // Cập nhật đồng hồ mỗi 50ms để có chuyển động mượt mà
+        setInterval(() => {
+            updateClock();
+            checkAlarms();
+        }, 50);
+        
+        updateAlarmsList();
+        updateTodoList();
+
+        const musicFiles = [
+        'd1.mp3',
+        'music/song2.mp3',
+        'music/song3.mp3',
+        'music/song4.mp3',
+        'music/song5.mp3',
+        'music/song6.mp3'
+    ];
+
+    let currentAudio = null;
+    let isPlaying = false;
+    let isLoop = false;
+    let isRandom = false;
+
+    const musicPlayer = document.getElementById('musicPlayer');
+    const currentSongLabel = document.getElementById('currentSong');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const loopBtn = document.getElementById('loopBtn');
+    const randomBtn = document.getElementById('randomBtn');
+
+    function playMusic(index) {
+        if (currentAudio) {
+            currentAudio.pause();
+        }
+
+        currentAudio = new Audio(musicFiles[index]);
+        currentAudio.volume = volumeSlider.value / 100;
+        currentAudio.play();
+        isPlaying = true;
+        updatePlayPauseButton();
+        currentSongLabel.textContent = `Đang phát: Bài hát ${index + 1}`;
+    }
+
+    function togglePlayPause() {
+        if (isPlaying) {
+            currentAudio.pause();
+        } else {
+            currentAudio.play();
+        }
+        isPlaying = !isPlaying;
+        updatePlayPauseButton();
+    }
+
+    function updatePlayPauseButton() {
+        if (isPlaying) {
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    }
+
+    function prevSong() {
+        let currentIndex = musicFiles.indexOf(currentAudio.src);
+        let newIndex = isRandom ? Math.floor(Math.random() * musicFiles.length) : (currentIndex - 1 + musicFiles.length) % musicFiles.length;
+        playMusic(newIndex);
+    }
+
+    function nextSong() {
+        let currentIndex = musicFiles.indexOf(currentAudio.src);
+        let newIndex = isRandom ? Math.floor(Math.random() * musicFiles.length) : (currentIndex + 1) % musicFiles.length;
+        playMusic(newIndex);
+    }
+
+    function toggleLoop() {
+        isLoop = !isLoop;
+        currentAudio.loop = isLoop;
+        loopBtn.classList.toggle('active', isLoop);
+    }
+
+    function toggleRandom() {
+        isRandom = !isRandom;
+        randomBtn.classList.toggle('active', isRandom);
+    }
+
+    function updateVolume() {
+        if (currentAudio) {
+            currentAudio.volume = volumeSlider.value / 100;
+        }
+    }
+
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+    loopBtn.addEventListener('click', toggleLoop);
+    randomBtn.addEventListener('click', toggleRandom);
+    volumeSlider.addEventListener('input', updateVolume);
+    </script>
+</body>
+</html>
